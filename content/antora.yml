@@ -1,13 +1,13 @@
 ---
 name: modules
-title: Sample Module Title
+title: Lab 1245: Customizing your Red Hat OpenStack Services on OpenShift
 version: master
 nav:
   - modules/ROOT/nav.adoc
 
 asciidoc:
   attributes:
-    lab_name: "I'm the lab_name var"
+    lab_name: "Lab 1245: Customizing your Red Hat OpenStack Services on OpenShift"
     release-version: master
     page-pagination: true
     my_var: "foo"
