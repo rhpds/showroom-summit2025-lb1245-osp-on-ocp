@@ -46,7 +46,7 @@ Wait until they are in an available state before proceeding:
 oc get nncp -w
 ----
 
-Click Control + C when you see that the operator has moved to Succeded state
+Type Control + C when you see that the nncp has moved to SuccessfullyConfigured state
 
 .Sample Output
 [source,bash]
