@@ -7,6 +7,6 @@
 ** xref:connected/create-cp.adoc[Create the Control Plane]
 ** xref:connected/create-dp.adoc[Create the Data Plane]
 ** xref:connected/access.adoc[Access OpenStack]
-** xref:connected/enable-heat.adoc[Enable the Orchestratation Service - Heat]
+** xref:connected/enable-heat.adoc[Enable the Orchestration Service - Heat]
 ** xref:connected/enable-swift.adoc[Enable the Object Storage Service - Swift]
-** xref:connected/validate.adoc[Validate that services enabled]
+** xref:connected/validate.adoc[Validate that Orchestration Service and Objecto storage service are enabled]

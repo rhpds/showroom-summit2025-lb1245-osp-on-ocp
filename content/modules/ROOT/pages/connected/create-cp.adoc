@@ -5,6 +5,8 @@ The control plane we will be using the NFS server we installed in the previous s
 
 == Prepare the secret to place the NFS server connection used by Cinder
 
+In the bastion:
+
 [source,bash,role=execute]
 ----
 oc create secret generic cinder-nfs-config --from-file=nfs-cinder-conf

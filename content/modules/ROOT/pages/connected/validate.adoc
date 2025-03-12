@@ -1,1 +1,52 @@
-# Validate that services enabled
+# Validate that Orchestration Service and Object storage service are enabled
+
+## Validate the Orchestration service
+
+## Validate the Object Storage Service
+
+. From the bastionm, access to the openstackclient pod:
++
+[source,bash,role=execute,subs=attributes]
+----
+oc rsh -n openstack openstackclient
+----
+
+. Verify that you are able to upload and download objects:
++
+[source,bash,role=execute]
+----
+openstack container create test
++---------------------------------------+-----------+------------------------------------+
+| account                               | container | x-trans-id                         |
++---------------------------------------+-----------+------------------------------------+
+| AUTH_4d9be0a9193e4577820d187acdd2714a | test      | txe5f9a10ce21e4cddad473-0065ce41b9 |
++---------------------------------------+-----------+------------------------------------+
+----
+
+. Create a test object:
++
+[source,bash,role=execute]
+----
+openstack object create test --name obj <(echo "Hello World!")
+----
+
+.Sample Output
+----
++--------+-----------+----------------------------------+
+| object | container | etag                             |
++--------+-----------+----------------------------------+
+| obj    | test      | d41d8cd98f00b204e9800998ecf8427e |
++--------+-----------+----------------------------------+
+----
+
+. Final a test to download an object from the container:
++
+[source,bash,role=execute]
+----
+openstack object save test obj --file -
+----
+
+.Sample Output
+----
+Hello World!
+----

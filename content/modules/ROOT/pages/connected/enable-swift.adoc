@@ -15,7 +15,7 @@ spec:
       swiftRing:
         ringReplicas: 1
       swiftStorage:
-        replicas: 0
+        replicas: 1
         networkAttachments:
         - storage
         storageClass: ocs-external-storagecluster-ceph-rbd
@@ -39,46 +39,15 @@ spec:
 '
 ----
 
-Inspect the resulting Object storage service pods:
+. Inspect the resulting Object storage service pods:
 +
 [source,bash,role=execute]
 ----
 oc get pods -l component=swift-proxy
 ----
 
-* Verify that the Object Storage proxy service is registered in the {identity_service_first_ref}:
-+
-[source,bash,role=execute]
+.Sample Output
 ----
-openstack service list | grep swift
-| b5b9b1d3c79241aa867fa2d05f2bbd52 | swift    | object-store |
-----
-+
-[source,bash,role=execute]
-----
-openstack endpoint list | grep swift
-| 32ee4bd555414ab48f2dc90a19e1bcd5 | regionOne | swift        | object-store | True    | public    | https://swift-public-openstack.apps-crc.testing/v1/AUTH_%(tenant_id)s |
-| db4b8547d3ae4e7999154b203c6a5bed | regionOne | swift        | object-store | True    | internal  | http://swift-internal.openstack.svc:8080/v1/AUTH_%(tenant_id)s        |
-----
-
-* Verify that you are able to upload and download objects:
-+
-[source,bash,role=execute]
-----
-openstack container create test
-+---------------------------------------+-----------+------------------------------------+
-| account                               | container | x-trans-id                         |
-+---------------------------------------+-----------+------------------------------------+
-| AUTH_4d9be0a9193e4577820d187acdd2714a | test      | txe5f9a10ce21e4cddad473-0065ce41b9 |
-+---------------------------------------+-----------+------------------------------------+
-
-openstack object create test --name obj <(echo "Hello World!")
-+--------+-----------+----------------------------------+
-| object | container | etag                             |
-+--------+-----------+----------------------------------+
-| obj    | test      | d41d8cd98f00b204e9800998ecf8427e |
-+--------+-----------+----------------------------------+
-
-openstack object save test obj --file -
-Hello World!
+NAME                           READY   STATUS    RESTARTS   AGE
+swift-proxy-6d95668579-7r256   2/2     Running   0          33m
 ----

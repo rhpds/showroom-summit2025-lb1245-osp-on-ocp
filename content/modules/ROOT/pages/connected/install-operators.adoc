@@ -6,7 +6,7 @@ In the bastion terminal, clone the repo and change directory to the files that w
 +
 [source,bash,role=execute]
 ----
-git clone https://github.com/rh-osp-demo/showroom_osp-on-ocp-day2.git labrepo
+git clone https://github.com/rhpds/showroom-summit2025-lb1245-osp-on-ocp labrepo
 cd labrepo/content/files
 ----
 
@@ -28,7 +28,8 @@ oc new-project openstack
 
 . Configure the **Catalog Source, OperatorGroup and Subscription** for the **OpenStack Operator** using your registry:
 +
-Create the new **CatalogSource, OperatorGroup, and Subscription** CRs in the **openstack** namespace from **files/openstack-operators.yaml**.
+Create the new **CatalogSource, OperatorGroup, and Subscription** CRs in the **openstack** namespace from **files/openstack-operators.yaml**:
++
 [source,bash,role=execute]
 ----
 oc apply -f osp-ng-openstack-operator.yaml

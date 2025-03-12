@@ -25,6 +25,10 @@ spec:
 [source,bash,role=execute]
 ----
 oc get Heat,HeatAPI,HeatEngine,HeatCFNAPI
+----
+
+.Sample Output
+----
 NAME                           STATUS   MESSAGE
 heat.heat.openstack.org/heat   True     Setup complete
 
@@ -38,22 +42,25 @@ NAME                                        STATUS   MESSAGE
 heatcfnapi.heat.openstack.org/heat-cfnapi   True     Setup complete
 ----
 
-. Check that the {orchestration} is registered in the {identity_service}:
+. Check that the Orchestration services is registered in the Keystone service:
 +
 [source,bash,role=execute]
 ----
 oc exec -it openstackclient -- openstack service list -c Name -c Type
+----
+
+.Sample Output
+----
 +------------+----------------+
 | Name       | Type           |
 +------------+----------------+
-| heat       | orchestration  |
-| glance     | image          |
 | heat-cfn   | cloudformation |
-| ceilometer | Ceilometer     |
+| neutron    | network        |
+| glance     | image          |
 | keystone   | identity       |
 | placement  | placement      |
-| cinderv3   | volumev3       |
 | nova       | compute        |
-| neutron    | network        |
+| ceilometer | Ceilometer     |
+| heat       | orchestration  |
 +------------+----------------+
 ----
