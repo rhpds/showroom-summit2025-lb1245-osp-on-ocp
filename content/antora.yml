@@ -1,6 +1,6 @@
 ---
 name: modules
-title: Lab 1245: Customizing your Red Hat OpenStack Services on OpenShift
+title: "Lab 1245: Customizing your Red Hat OpenStack Services on OpenShift"
 version: master
 nav:
   - modules/ROOT/nav.adoc
