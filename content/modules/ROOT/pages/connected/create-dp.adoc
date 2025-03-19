@@ -54,38 +54,6 @@ ssh-keygen -f ./id -t ecdsa-sha2-nistp521 -N ''
 oc create secret generic nova-migration-ssh-key --from-file=ssh-privatekey=id --from-file=ssh-publickey=id.pub -n openstack -o yaml | oc apply -f-
 ----
 
-Create a secret for the subscription manager and a secret for the Red Hat registry:
-
-[source,bash,role=execute]
-----
-echo -n "your_username" | base64
-echo -n "your_password" | base64
-----
-
-[source,bash,role=execute]
-----
-oc apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: subscription-manager
-data:
-  username: <base64 encoded subscription-manager username>
-  password: <base64 encoded subscription-manager password>
-EOF
-----
-
-Create a secret for the subscription manager and a secret for the Red Hat registry:
-
-[IMPORTANT]
-
-Add your username and password
-
-[source,bash,role=execute]
-----
-oc create secret generic redhat-registry --from-literal edpm_container_registry_logins='{"registry.redhat.io": {"<username>": "<password>"}}' -n openstack
-----
-
 Deploy the Dataplane
 
 [source,bash,role=execute]
