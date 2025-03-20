@@ -46,7 +46,9 @@ oc get installplan -n openstack-operators -w
 NAME            CSV                       APPROVAL   APPROVED
 install-lfs4j   octavia-operator.v1.0.6   Manual     false
 ----
+
 . Approve the installation of the operator by updating the approved field of the InstallPlan:
++
 [source,bash,role=execute]
 ----
 oc patch installplan <install-plan-id>  \
