@@ -230,6 +230,7 @@ Type Control + C when you see that the operator has moved to Succeded state
 ----
 Name                                              Phase
 metallb-operator.v4.16.0-202502260004              Succeeded
+----
 
 Create a single instance of a *metallb* resource:
 
