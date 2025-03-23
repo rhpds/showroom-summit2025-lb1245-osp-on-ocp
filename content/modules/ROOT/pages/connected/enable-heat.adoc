@@ -54,13 +54,14 @@ oc exec -it openstackclient -- openstack service list -c Name -c Type
 +------------+----------------+
 | Name       | Type           |
 +------------+----------------+
-| heat-cfn   | cloudformation |
-| neutron    | network        |
-| glance     | image          |
-| keystone   | identity       |
-| placement  | placement      |
-| nova       | compute        |
-| ceilometer | Ceilometer     |
 | heat       | orchestration  |
+| heat-cfn   | cloudformation |
+| placement  | placement      |
+| glance     | image          |
+| ceilometer | Ceilometer     |
+| neutron    | network        |
+| nova       | compute        |
+| cinderv3   | volumev3       |
+| keystone   | identity       |
 +------------+----------------+
 ----
