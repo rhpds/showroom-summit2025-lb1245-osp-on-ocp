@@ -23,12 +23,12 @@ Wait until the OpenStack control plane deployment is completed:
 
 [source,bash,role=execute]
 ----
-oc get openstackcontrolplane -n openstack
+oc get openstackcontrolplane -n openstack -w
 ----
 
 WARNING: This can take several minutes.
 
-Repeat the query until MESSAGE is Setup complete
+Type Control + C, to exit the wait command when you see message "Setup Complete"
 
 .Sample Output
 ----
