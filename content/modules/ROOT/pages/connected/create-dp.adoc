@@ -131,5 +131,5 @@ Repeat the query until you see the following:
 .Sample Output
 ----
 NAME                       STATUS   MESSAGE
-openstack-edpm-compute-1   False    Deployment in progress
+openstack-edpm-compute-1   True     NodeSet Ready
 ----
