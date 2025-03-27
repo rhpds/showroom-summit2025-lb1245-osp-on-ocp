@@ -113,14 +113,14 @@ Create the Server and a Floating IP
 openstack server create \
     --flavor tiny --key-name default --network private --security-group basic \
     --image cirros test-server
-openstack floating ip create public --floating-ip-addres 172.21.0.200
+openstack floating ip create public --floating-ip-addres 172.21.0.201
 ----
 
 Add the floating IP above to the new VM in the next step.
 
 [source,bash,role=execute]
 ----
-openstack server add floating ip test-server 172.21.0.200
+openstack server add floating ip test-server 172.21.0.201
 exit
 ----
 
@@ -132,7 +132,7 @@ ssh -i /home/lab-user/.ssh/{guid}key.pem cloud-user@compute01
 ----
 [source,bash,role=execute]
 ----
-ssh cirros@172.21.0.200
+ssh cirros@172.21.0.201
 ----
 [source,bash,role=execute]
 ----
