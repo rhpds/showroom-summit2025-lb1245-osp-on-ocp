@@ -1,22 +1,6 @@
 = Configuration, Installation, and Use of Red Hat OpenStack Services on OpenShift
 
-== Access Your Lab Environment
-
-. Access to the bastion executing the following command: 
-+
-[source,bash,role=execute,subs=attributes]
-----
-ssh {bastion_ssh_user_name}@{bastion_public_hostname} -p {bastion_ssh_port} 
-----
-+
-SSH password is `{bastion_ssh_password}`. The uuid of your lab is: `{guid}`
-. Optionally copy your public SSH key to the bastion allowing you to authenticate with the server without entering a password every time you connect: 
-+
-[source,bash,role=execute,subs=attributes]
-----
-ssh-copy-id -p {bastion_ssh_port} {bastion_ssh_user_name}@{bastion_public_hostname} 
-----
-+
+== OpenShift Console Access
 
 If needed, you can navigate to the OpenShift console URL: {openshift_cluster_console_url}[{openshift_cluster_console_url}^] using user `admin` and password `{openshift_cluster_admin_password}`
 
@@ -26,7 +10,6 @@ Some prerequisites needed to install Red Hat OpenStack Services on OpenShift (RH
 
 * An operational OpenShift cluster which supports Multus CNI
 * oc command line tool on your workstation (bastion host)
-* k9s command line tool on your workstation (bastion host)
 * podman command line tool on your workstation (bastion host)
 * Access to repositories which contain the Dev Preview code
 * Access to an existing registry or create a local Quay registry
@@ -278,8 +261,9 @@ oc get pods -n cert-manager
 Repeat command until all pods are showing READY 1/1
 
 .Sample Output
-----
+```
 NAME                                      READY   STATUS    RESTARTS   AGE
-cert-manager-cainjector-5df47878b-knmwg   1/1     Running   0          19s
-cert-manager-webhook-66c75fcddf-8kldt     1/1     Running   0          23s
-----
+cert-manager-c965b6b46-lbtp7              1/1     Running   0          39m
+cert-manager-cainjector-7b97bcbf6-qrbls   1/1     Running   0          49m
+cert-manager-webhook-6f8fdf478f-6lgh2     1/1     Running   0          49m
+```
