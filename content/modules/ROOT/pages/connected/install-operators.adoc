@@ -41,17 +41,18 @@ oc apply -f osp-ng-openstack-operator.yaml
 ----
 oc get installplan -n openstack-operators -w
 ----
++
 .Sample Output
 ----
 NAME            CSV                       APPROVAL   APPROVED
 install-lfs4j   openstack-operator.v1.0.7   Manual     false
 ----
 
-. Approve the installation of the operator by updating the approved field of the InstallPlan. You will need to replace the <install-plan-id> with the NAME from the following command:
+. Approve the installation of the operator by updating the approved field of the InstallPlan.
 +
 [source,bash,role=execute]
 ----
-oc patch installplan <install-plan-id>  \
+oc patch installplan $(oc get installplan -n openstack-operators | grep -v NAME | awk '{print $1}')  \
     --namespace openstack-operators \
     --type merge \
     --patch '{"spec":{"approved":true}}'
