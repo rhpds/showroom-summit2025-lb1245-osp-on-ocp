@@ -1,6 +1,6 @@
 ---
 site:
-  title: Red Hat Summit 2025
+  title: Lab 1245 - Customizing your Red Hat OpenStack Services on OpenShift
   start_page: modules::index.adoc
 
 content:
