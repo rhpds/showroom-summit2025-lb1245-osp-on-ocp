@@ -2,7 +2,7 @@
 
 . Patch the openstack control plane
 +
-In the bastion, patch the openstack control plane CR:
+In the bastion, patch the openstack control plane CR in order to enable the Orchestration service (Heat) in the control plane:
 +
 [source,bash,role=execute]
 ----
@@ -26,7 +26,7 @@ spec:
 ----
 oc get Heat,HeatAPI,HeatEngine,HeatCFNAPI
 ----
-
++
 .Sample Output
 ----
 NAME                           STATUS   MESSAGE
@@ -48,7 +48,7 @@ heatcfnapi.heat.openstack.org/heat-cfnapi   True     Setup complete
 ----
 oc exec -it openstackclient -- openstack service list -c Name -c Type
 ----
-
++
 .Sample Output
 ----
 +------------+----------------+

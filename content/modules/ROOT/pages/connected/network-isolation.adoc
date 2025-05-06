@@ -64,6 +64,63 @@ Before proceeding configure a *nad* resource for each isolated network to attach
 oc apply -f osp-ng-netattach.yaml
 ----
 
+Verify that a NetworkAttachmentDefinition (*nad*) exists for each isolated network you intend to attach the service pod to:
+
+[source,bash,role=execute]
+----
+oc get Network-Attachment-Definitions -n openstack
+----
+
+.Sample Output
+[source,bash]
+----
+NAME          AGE
+ctlplane      4h47m
+external      4h47m
+internalapi   4h47m
+storage       4h47m
+tenant        4h47m
+----
+
+Review the internalapi *nad* IP addressing configuration:  
+
+[source,bash,role=execute]
+----
+oc describe Network-Attachment-Definitions internalapi -n openstack
+----
+
+.Sample Output
+[source,bash]
+----
+Name:         internalapi
+Namespace:    openstack
+Labels:       <none>
+Annotations:  <none>
+API Version:  k8s.cni.cncf.io/v1
+Kind:         NetworkAttachmentDefinition
+Metadata:
+  Creation Timestamp:  2025-05-06T09:13:32Z
+  Generation:          1
+  Resource Version:    94849
+  UID:                 06b610b6-8b65-4aeb-85a1-906bcb7a3eee
+Spec:
+  Config:  {
+  "cniVersion": "0.3.1",
+  "name": "internalapi",
+  "type": "ipvlan",
+  "master": "enp4s0",
+  "mode": "l2",
+  "ipam": {
+    "type": "whereabouts",
+    "range": "172.17.0.0/24",
+    "range_start": "172.17.0.30",
+    "range_end": "172.17.0.70"
+  }
+}
+
+Events:  <none>
+----
+
 Once the nodes are available and attached configure the *MetalLB IP address range* using a preconfigured yaml file:
 
 [source,bash,role=execute]
@@ -71,11 +128,43 @@ Once the nodes are available and attached configure the *MetalLB IP address rang
 oc apply -f osp-ng-metal-lb-ip-address-pools.yaml
 ----
 
+Review the *MetalLB IP address range*. You use the MetalLB Operator to expose internal service endpoints on the isolated networks. By default, the public service endpoints are exposed as RHOCP routes.:
+
+[source,bash,role=execute]
+----
+oc get IPAddressPools -n metallb-system
+----
+.Sample Output
+[source,bash]
+----
+NAME          AUTO ASSIGN   AVOID BUGGY IPS   ADDRESSES
+ctlplane      true          false             ["172.22.0.80-172.22.0.90"]
+internalapi   true          false             ["172.17.0.80-172.17.0.90"]
+storage       true          false             ["172.18.0.80-172.18.0.90"]
+tenant        true          false             ["172.19.0.80-172.19.0.90"]
+----
+
 Configure a *L2Advertisement* resource which will define which node advertises a service to the local network which has been preconfigured for your demo environment:
 
 [source,bash,role=execute]
 ----
 oc apply -f osp-ng-metal-lb-l2-advertisements.yaml
+----
+
+Review the *L2Advertisement* resource:
+
+[source,bash,role=execute]
+----
+oc get L2Advertisements -n metallb-system
+----
+.Sample Output
+[source,bash]
+----
+NAME          IPADDRESSPOOLS    IPADDRESSPOOL SELECTORS   INTERFACES
+ctlplane      ["ctlplane"]                                ["enp3s0"]
+internalapi   ["internalapi"]                             ["enp4s0"]
+storage       ["storage"]                                 ["enp5s0"]
+tenant        ["tenant"]                                  ["enp6s0"]
 ----
 
 Run the following command to enable global IP forwarding:

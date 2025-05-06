@@ -38,7 +38,7 @@ openstack stack create -t servers_with_cinder.yaml --parameter key_name=default 
 ----
 openstack stack list
 ----
-
++
 .Sample Output
 ----
 +--------------------------------------+----------------------+----------------------------------+-----------------+----------------------+--------------+
@@ -55,7 +55,7 @@ openstack stack list
 openstack server list
 openstack volume list
 ----
-
++
 .Sample Output
 ----
 +--------------------------------------+-------------+--------+---------------------------------------+--------+--------+
@@ -87,7 +87,7 @@ oc rsh -n openstack openstackclient
 ----
 openstack container create test
 ----
-
++
 .Sample Output
 ----
 +---------------------------------------+-----------+------------------------------------+
@@ -103,7 +103,7 @@ openstack container create test
 ----
 openstack object create test --name obj <(echo "Hello World!")
 ----
-
++
 .Sample Output
 ----
 +--------+-----------+----------------------------------+
@@ -119,7 +119,7 @@ openstack object create test --name obj <(echo "Hello World!")
 ----
 openstack object save test obj --file -
 ----
-
++
 .Sample Output
 ----
 Hello World!

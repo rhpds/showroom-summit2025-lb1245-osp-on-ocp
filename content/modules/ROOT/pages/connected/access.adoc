@@ -137,6 +137,7 @@ ssh cirros@172.21.0.201
 [source,bash,role=execute]
 ----
 exit
+exit
 ----
 
 == Access Horizon
@@ -154,4 +155,5 @@ echo $ROUTE
 https://horizon-openstack.apps.86dgb.dynamic.redhatworkshops.io
 ----
 
-Navigate to the url and log in as username `admin` password `openstack`
+Navigate to the url and log in as username `admin` password `openstack`.
+NOTE: Note that self-signed certificates are being used, which may trigger browser or client security warnings.

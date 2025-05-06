@@ -62,7 +62,7 @@ oc apply -f osp-ng-dataplane-node-set-deploy.yaml
 oc apply -f osp-ng-dataplane-deployment.yaml
 ----
 
-You can view the Ansible logs while the deployment executes:
+You can view the Ansible logs while the deployment executes. This step will not succeed until the Ansible Execution environment pod job has been created and is ready:
 
 [source,bash,role=execute]
 ----
@@ -106,7 +106,7 @@ validate-network-openstack-edpm-compute-1-openstack-edpm-comput   1/1           
 
 Verify that the data plane is deployed.
 
-NOTE: This takes several minutes.
+NOTE: This takes 20-30 minutes.
 
 [source,bash,role=execute]
 ----

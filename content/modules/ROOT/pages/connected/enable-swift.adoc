@@ -2,7 +2,7 @@
 
 . Patch the openstack control plane
 +
-In the bastion, patch the openstack control plane CR:
+In the bastion, patch the openstack control plane CR in order to enable the Object Storage Service (Swift) in the control plane:
 +
 [source,bash,role=execute]
 ----
@@ -45,7 +45,7 @@ spec:
 ----
 oc get pods -l component=swift-proxy
 ----
-
++
 .Sample Output
 ----
 NAME                           READY   STATUS    RESTARTS   AGE

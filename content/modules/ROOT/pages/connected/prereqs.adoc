@@ -103,8 +103,7 @@ spec:
 EOF
 ----
 
-Confirm that NMstate operator is running.
-Repeat this command until you see the desired output:
+Confirm that NMstate operator is running:
 
 [source,bash,role=execute]
 ----
@@ -119,7 +118,7 @@ Name                                              Phase
 kubernetes-nmstate-operator.4.13.0-202402211707   Succeeded
 ----
 
-Create instance of the *nmstate* operator:
+Create instance of *nmstate* resource:
 
 [source,bash,role=execute]
 ----
@@ -192,7 +191,7 @@ spec:
 EOF
 ----
 
-Confirm the *metallb* installplan is in the namespace:
+Confirm the *metallb* installplan is in the namespace. You may need to retry a few times before the install plan becomes visible:
 
 [source,bash,role=execute]
 ----

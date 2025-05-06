@@ -58,6 +58,22 @@ oc patch installplan $(oc get installplan -n openstack-operators | grep -v NAME 
     --patch '{"spec":{"approved":true}}'
 ----
 
+. Confirm the *openstack* operator is installed:
++
+[source,bash,role=execute]
+----
+oc get clusterserviceversion -n openstack-operators \
+ -o custom-columns=Name:.metadata.name,Phase:.status.phase -w
+----
++
+Type Control + C when you see that the operator has moved to Succeded state
++
+.Sample Output
+----
+Name                                    Phase
+openstack-operator.v1.0.9               Succeeded
+----
+
 . Initialize the operator:
 +
 [source,bash,role=execute]
@@ -86,8 +102,7 @@ oc get pods -n openstack-operators
 oc get pods -n openstack-operators --sort-by=.metadata.creationTimestamp
 ----
 +
-You should see a list of completed pods and then the running openstack services pods.
-It should look like:
+You should see a list of completed pods and then the running openstack services pods.Ensure that all containers are in the ‘Running’ state before proceeding:
 +
 .Sample Output
 ----
