@@ -32,7 +32,7 @@ PRIVATE_SUBNET_ID=$(openstack subnet list -f value -c ID -c Name | awk '$2 == "p
 openstack stack create -t servers_with_cinder.yaml --parameter key_name=default --parameter image=cirros --parameter flavor=tiny --parameter net_id=$PRIVATE_NETWORK_ID --parameter subnet_id=$PRIVATE_SUBNET_ID servers_with_volumes
 ----
 
-. List the stack to check if the stack deplyment is completed
+. Run the command to list the stack and check its status. Proceed only when the status is CREATE_COMPLETE.
 +
 [source,bash,role=execute,subs=attributes]
 ----
