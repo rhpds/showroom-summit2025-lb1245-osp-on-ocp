@@ -102,7 +102,7 @@ oc get pods -n openstack-operators
 oc get pods -n openstack-operators --sort-by=.metadata.creationTimestamp
 ----
 +
-You should see a list of completed pods and then the running openstack services pods.Ensure that all containers are in the ‘Running’ state before proceeding:
+You should see a list of completed pods and then the running openstack services pods. Ensure that all containers are in the ‘Running’ state before proceeding:
 +
 .Sample Output
 ----

@@ -30,7 +30,7 @@ Replace the UUID to the GUID of your environment in the repo files:
 find . -type f -exec sed -i 's/UUID/{guid}/g' {} +
 ----
 
-Apply preconfigured yamls indivdually:
+Apply preconfigured yamls individually:
 
 [source,bash,role=execute]
 ----
@@ -55,6 +55,91 @@ NAME                                STATUS      REASON
 osp-multi-nic-worker-ocp4-worker1   Available   SuccessfullyConfigured
 osp-multi-nic-worker-ocp4-worker2   Available   SuccessfullyConfigured
 osp-multi-nic-worker-ocp4-worker3   Available   SuccessfullyConfigured
+----
+
+You can describe the NodeNetworkConfigurationPolicy applied in *worker1*, using:
+
+[source,bash,role=execute]
+----
+oc describe nncp osp-multi-nic-worker-ocp4-worker1
+----
+
+.Sample Output
+[source,bash]
+----
+[...]
+Spec:
+  Desired State:
+    Interfaces:
+      Description:  Configuring internalapi enp4s0
+      ipv4:
+        Address:
+          Ip:               172.17.0.10
+          Prefix - Length:  24
+        Dhcp:               false
+        Enabled:            true
+      ipv6:
+        Enabled:    false
+      Mtu:          1500
+      Name:         enp4s0
+      State:        up
+      Type:         ethernet
+      Description:  Configuring storage enp5s0
+      ipv4:
+        Address:
+          Ip:               172.18.0.10
+          Prefix - Length:  24
+        Dhcp:               false
+        Enabled:            true
+      ipv6:
+        Enabled:    false
+      Mtu:          1500
+      Name:         enp5s0
+      State:        up
+      Type:         ethernet
+      Description:  Configuring tenat enp6s0
+      ipv4:
+        Address:
+          Ip:               172.19.0.10
+          Prefix - Length:  24
+        Dhcp:               false
+        Enabled:            true
+      ipv6:
+        Enabled:    false
+      Mtu:          1500
+      Name:         enp6s0
+      State:        up
+      Type:         ethernet
+      Description:  Configuring external enp7s0
+      ipv4:
+        Address:
+          Ip:               172.21.0.10
+          Prefix - Length:  24
+        Dhcp:               false
+        Enabled:            true
+      ipv6:
+        Enabled:    false
+      Mtu:          1500
+      Name:         enp7s0
+      State:        up
+      Type:         ethernet
+      Description:  Configuring ctlplane enp3s0
+      ipv4:
+        Address:
+          Ip:               172.22.0.10
+          Prefix - Length:  24
+        Dhcp:               false
+        Enabled:            true
+      ipv6:
+        Enabled:  false
+      Mtu:        1500
+      Name:       enp3s0
+      State:      up
+      Type:       ethernet
+  Node Selector:
+    kubernetes.io/hostname:          ocp4-worker1.aio.example.com
+    node-role.kubernetes.io/worker:
+[...]
 ----
 
 Before proceeding configure a *nad* resource for each isolated network to attach a service pod to the network:
@@ -121,7 +206,7 @@ Spec:
 Events:  <none>
 ----
 
-Once the nodes are available and attached configure the *MetalLB IP address range* using a preconfigured yaml file:
+Configure the *MetalLB IP address range* using a preconfigured yaml file:
 
 [source,bash,role=execute]
 ----

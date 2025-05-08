@@ -1,6 +1,6 @@
 = Install the NFS Server in the NFS Server Node
 
-. Configure the NFS server for Glance and Cinder
+Configure the NFS server for Glance and Cinder
 
 From the bastion, connect to the *NFS server* host and configure the networking:
 
